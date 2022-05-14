@@ -19,10 +19,11 @@ function App() {
 
     return (
         <div>
-            <h1 className="text-center text-3xl mb-4">Comments</h1>
+            <h1 className="text-center text-3xl my-4">Comments</h1>
 
             <div className="px-10">
                 {data && data.map((comment, index) => (
+                    // Caclulate the comments to dispaly
                     (index >= (page - 1) * maxPerPage) && (index < page * maxPerPage) && 
                     (
                         <div key={comment.id} className="border-2 space-y-2 mb-10 p-6">
@@ -35,10 +36,10 @@ function App() {
                 ))}
             </div>
 
-            {/* Pagination */}
+            {/* Pagination Controller */}
             {data && data.length > maxPerPage && (
-                <>
                 <div className="flex flex-row items-center justify-center space-x-3 mb-10">
+                    {/* Go previous page if exists */}
                     <button
                         onClick={() => {
                             setPage((old) => Math.max(old - 1, 1));
@@ -54,7 +55,8 @@ function App() {
                     </button>
 
                     <div className="font-medium">{page} / {maxPage}</div>
-
+                    
+                    {/* Go to the next page, if it exists */}
                     <button
                         onClick={() => {
                             setPage((old) => Math.min(old + 1, maxPage));
@@ -69,7 +71,6 @@ function App() {
                         </svg>
                     </button>
                 </div>
-                </>
             )}
         </div>
     )
